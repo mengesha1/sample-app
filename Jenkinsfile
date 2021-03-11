@@ -28,13 +28,13 @@ pipeline{
     }
     stage ('Nexus Upload') {
       steps {
-    nexusArtifactUploader artifacts: [[artifactId: 'MyWebApp', classifier: '', file: 'MyWebApp/target/MyWebApp.war', type: 'war']], credentialsId: 'f09818ac-0466-487f-a14a-941ed0cb8c5f', groupId: 'myGroupId', nexusUrl: 'http://34.229.67.183:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'maven-snapshots', version: '1.0-SNAPSHOT '
+    nexusArtifactUploader artifacts: [[artifactId: 'MyWebApp', classifier: '', file: 'MyWebApp/target/MyWebApp.war', type: 'war']], credentialsId: 'f09818ac-0466-487f-a14a-941ed0cb8c5f', groupId: 'myGroupId', nexusUrl: 'http://54.234.77.225:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'maven-snapshots', version: '1.0-SNAPSHOT '
     }  
    }
     stage ('DEV Deploy') {
       steps {
       echo "deploying to DEV Env "
-      deploy adapters: [tomcat9(credentialsId: '6f914f84-baed-48f5-8813-073e306c6ebb', path: '', url: 'http://3.86.18.11:8080')], contextPath: null, war: '**/*.war'
+      deploy adapters: [tomcat9(credentialsId: '6f914f84-baed-48f5-8813-073e306c6ebb', path: '', url: 'http://18.210.19.103:8080')], contextPath: null, war: '**/*.war'
       }
     }
     stage ('Slack Notification') {
@@ -54,7 +54,7 @@ pipeline{
      stage ('QA Deploy') {
       steps {
         echo "deploying to QA Env "
-        deploy adapters: [tomcat9(credentialsId: '6f914f84-baed-48f5-8813-073e306c6ebb', path: '', url: 'http://3.86.18.11:8080')], contextPath: null, war: '**/*.war'
+        deploy adapters: [tomcat9(credentialsId: '6f914f84-baed-48f5-8813-073e306c6ebb', path: '', url: 'http://18.210.19.103:8080')], contextPath: null, war: '**/*.war'
         }
     }
     stage ('QA Approve') {
