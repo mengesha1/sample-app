@@ -1,4 +1,4 @@
-pipeline{
+pipeline{agent {label 'Slave' }
     agent any
      tools {
     maven 'Maven3'
