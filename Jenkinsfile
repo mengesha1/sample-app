@@ -1,6 +1,6 @@
-pipeline{agent {label 'Slave' }
-    agent any
-     tools {
+pipeline{
+    agent {label 'Slave' }
+        tools {
     maven 'Maven3'
     }
   stages{
